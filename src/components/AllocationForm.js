@@ -7,7 +7,7 @@ const AllocationForm = (props) => {
 	const [name, setName] = useState('');
 	const [cost, setCost] = useState('');
 	const [action, setAction] = useState('');
-
+	const { currency, getCurrencySymbol } = useContext(AppContext);
 	const submitEvent = () => {
 		if (cost > remaining) {
 			alert('The value cannot exceed remaining funds  £' + remaining);
@@ -86,12 +86,17 @@ const AllocationForm = (props) => {
 						</option>
 					</select>
 
+					<div className="input-group-prepend" style={{ marginLeft: '2rem' }}>
+						<span className="input-group-text">
+							{getCurrencySymbol(currency)}
+						</span>
+					</div>
 					<input
 						required="required"
 						type="number"
 						id="cost"
 						value={cost}
-						style={{ marginLeft: '2rem', size: 10 }}
+						style={{ width: '80px' }} // Ajusta el ancho según tus necesidades
 						onChange={(event) => setCost(event.target.value)}
 					></input>
 
